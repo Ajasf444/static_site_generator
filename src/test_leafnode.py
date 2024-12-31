@@ -4,7 +4,7 @@ from leafnode import LeafNode
 
 class TestLeafNode(unittest.TestCase):
     def test_missing_value_should_error(self):
-        self.assertRaises(ValueError, lambda: LeafNode())
+        self.assertRaises(ValueError, lambda: LeafNode(None, None, None))
     
     def test_get_tag(self):
         leaf_node = LeafNode('tag', 'value', {})
@@ -15,7 +15,7 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual(leaf_node.value, 'value')
 
     def test_props_to_html_without_tag(self):
-        leaf_node = LeafNode(value = 'Baconator Fries', props = {'Tahm': 'Kench'})
+        leaf_node = LeafNode(None, 'Baconator Fries', {'Tahm': 'Kench'})
         self.assertEqual(leaf_node.to_html(), 'Baconator Fries')
     
     def test_props_to_html_with_tag(self):
