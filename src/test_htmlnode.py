@@ -15,6 +15,9 @@ class TestHTMLNode(unittest.TestCase):
     def test_props_to_html(self):
         node = HTMLNode(props = {'baconator': 'fries', 'Tahm': 'Kench'})
         self.assertEqual(node.props_to_html(), ' baconator="fries" Tahm="Kench"')
+    def test_emtpy_props_to_html(self):
+        node = HTMLNode(props = {})
+        self.assertEqual(node.props_to_html(), '')
 
 
 if __name__ == '__main__':
