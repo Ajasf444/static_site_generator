@@ -3,7 +3,7 @@ from leafnode import LeafNode
 
 
 class TextType(Enum):
-    NORMAL = "normal"
+    TEXT = "text"
     BOLD = "bold"
     ITALIC = "italic"
     CODE = "code"
@@ -34,7 +34,7 @@ def text_node_to_html_node(text_node):
     url = text_node.url
 
     match text_type:
-        case TextType.NORMAL:
+        case TextType.TEXT:
             return LeafNode(None, text)
         case TextType.BOLD:
             return LeafNode("b", text)
@@ -48,3 +48,23 @@ def text_node_to_html_node(text_node):
             return LeafNode("img", "", {"src": url, "alt": text})
         case _:
             raise ValueError("Invalid TextType")
+
+
+def split_nodes_delimiter(old_nodes, delimiter, text_type):
+    new_nodes = []
+    if not old_nodes:
+        return new_nodes
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+            continue
+        split_text = node.text.split(delimiter)
+        for i, text in enumerate(split_text):
+            if not text:
+                continue
+            if i % 2 == 0:
+                new_node = TextNode(text, TextType.TEXT)
+            else:
+                new_node = TextNode(text, text_type)
+            new_nodes.append(new_node)
+    return new_nodes

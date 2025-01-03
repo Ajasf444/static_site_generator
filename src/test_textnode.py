@@ -1,6 +1,6 @@
 import unittest
 
-from textnode import TextNode, TextType, text_node_to_html_node
+from textnode import TextNode, TextType, split_nodes_delimiter, text_node_to_html_node
 from leafnode import LeafNode
 
 
@@ -27,8 +27,8 @@ class TestTextNode(unittest.TestCase):
 
 
 class TestTextNodeToHTMLNode(unittest.TestCase):
-    def test_text_node_to_html_node_normal(self):
-        text_node = TextNode("normal text", TextType.NORMAL)
+    def test_text_node_to_html_node_text(self):
+        text_node = TextNode("normal text", TextType.TEXT)
         leaf_node = text_node_to_html_node(text_node)
         self.assertEqual(leaf_node, LeafNode(None, "normal text"))
 
@@ -59,6 +59,33 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
             leaf_node,
             LeafNode("img", "", {"src": "https://dummy.jpg", "alt": "alt text"}),
         )
+
+
+class TestSplitNodesDelimiter(unittest.TestCase):
+    def test_empty_old_nodes(self):
+        self.assertEqual(split_nodes_delimiter([], "`", TextType.CODE), [])
+
+    def test_non_text_node(self):
+        node = TextNode("Tahm Kench", TextType.CODE)
+        self.assertEqual(split_nodes_delimiter([node], "`", TextType.CODE), [node])
+
+    def test_code_block(self):
+        node = TextNode("This is text with a `code block` word", TextType.TEXT)
+        output = [
+            TextNode("This is text with a ", TextType.TEXT),
+            TextNode("code block", TextType.CODE),
+            TextNode(" word", TextType.TEXT),
+        ]
+        self.assertEqual(split_nodes_delimiter([node], "`", TextType.CODE), output)
+
+    def test_two_code_blocks(self):
+        node = TextNode("`code block a` `code block b`", TextType.TEXT)
+        output = [
+            TextNode("code block a", TextType.CODE),
+            TextNode(" ", TextType.TEXT),
+            TextNode("code block b", TextType.CODE),
+        ]
+        self.assertEqual(split_nodes_delimiter([node], "`", TextType.CODE), output)
 
 
 if __name__ == "__main__":
