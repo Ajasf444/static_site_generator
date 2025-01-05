@@ -7,6 +7,7 @@ from textnode import (
     split_nodes_image,
     split_nodes_link,
     text_node_to_html_node,
+    text_to_textnodes,
 )
 from leafnode import LeafNode
 
@@ -185,6 +186,31 @@ class TestSplitNodesLink(unittest.TestCase):
             TextNode(" Tahm Kench", TextType.TEXT),
         ]
         self.assertEqual(split_nodes_link([node_1, node_2]), output)
+
+
+class TestTextToTextNode(unittest.TestCase):
+    def test_all_text_type_cases(self):
+        text = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
+        output = [
+            TextNode("This is ", TextType.TEXT),
+            TextNode("text", TextType.BOLD),
+            TextNode(" with an ", TextType.TEXT),
+            TextNode("italic", TextType.ITALIC),
+            TextNode(" word and a ", TextType.TEXT),
+            TextNode("code block", TextType.CODE),
+            TextNode(" and an ", TextType.TEXT),
+            TextNode(
+                "obi wan image", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg"
+            ),
+            TextNode(" and a ", TextType.TEXT),
+            TextNode("link", TextType.LINK, "https://boot.dev"),
+        ]
+        self.assertEqual(text_to_textnodes(text), output)
+
+    def test_empty_text(self):
+        text = ""
+        output = []
+        self.assertEqual(text_to_textnodes(text), output)
 
 
 if __name__ == "__main__":
