@@ -117,3 +117,31 @@ def split_nodes_link(old_nodes):
         if remaining_text:
             new_nodes.append(TextNode(remaining_text, TextType.TEXT))
     return new_nodes
+
+
+def split_nodes_bold(nodes):
+    return split_nodes_delimiter(nodes, "**", TextType.BOLD)
+
+
+def split_nodes_italic(nodes):
+    return split_nodes_delimiter(nodes, "*", TextType.ITALIC)
+
+
+def split_nodes_code(nodes):
+    return split_nodes_delimiter(nodes, "`", TextType.CODE)
+
+
+def text_to_textnodes(text):
+    if not text:
+        return []
+    nodes = [TextNode(text, TextType.TEXT)]
+    filter_funcs = [
+        split_nodes_image,
+        split_nodes_link,
+        split_nodes_bold,
+        split_nodes_italic,
+        split_nodes_code,
+    ]
+    for func in filter_funcs:
+        nodes = func(nodes)
+    return nodes
