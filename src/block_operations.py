@@ -53,3 +53,7 @@ def is_unordered_list(lines):
 
 def is_ordered_list(lines):
     return all(line.startswith(f"{i}. ") for i, line in enumerate(lines, 1))
+
+
+def markdown_to_html_node(markdown):
+    pass
