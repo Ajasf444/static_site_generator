@@ -5,7 +5,7 @@ def markdown_to_blocks(markdown):
     return list(
         filter(
             lambda line: line,
-            map(lambda line: line.strip("\n").strip(" "), split_markdown),
+            map(lambda line: line.strip(), split_markdown),
         )
     )
 
@@ -57,3 +57,6 @@ def is_ordered_list(lines):
 
 def markdown_to_html_node(markdown):
     blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        block_type = block_to_block_type(block)
+        pass
