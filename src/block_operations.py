@@ -1,9 +1,9 @@
-block_type_heading = "heading"
-block_type_code = "code"
-block_type_quote = "quote"
-block_type_unordered_list = "unordered_list"
-block_type_ordered_list = "ordered_list"
-block_type_paragraph = "paragraph"
+BLOCK_TYPE_HEADING = "heading"
+BLOCK_TYPE_CODE = "code"
+BLOCK_TYPE_QUOTE = "quote"
+BLOCK_TYPE_UNORDERED_LIST = "unordered_list"
+BLOCK_TYPE_ORDERED_LIST = "ordered_list"
+BLOCK_TYPE_PARAGRAPH = "paragraph"
 
 
 def markdown_to_blocks(markdown):
@@ -22,17 +22,17 @@ def block_to_block_type(block):
     if not block:
         return ""
     if is_heading(block):
-        return block_type_heading
+        return BLOCK_TYPE_HEADING
     if is_code(block):
-        return block_type_code
+        return BLOCK_TYPE_CODE
     lines = block.splitlines()
     if is_quote(lines):
-        return block_type_quote
+        return BLOCK_TYPE_QUOTE
     if is_unordered_list(lines):
-        return block_type_unordered_list
+        return BLOCK_TYPE_UNORDERED_LIST
     if is_ordered_list(lines):
-        return block_type_ordered_list
-    return block_type_paragraph
+        return BLOCK_TYPE_ORDERED_LIST
+    return BLOCK_TYPE_PARAGRAPH
 
 
 def is_heading(block):
@@ -68,17 +68,17 @@ def markdown_to_html_node(markdown):
     for block in blocks:
         block_type = block_to_block_type(block)
         match block_type:
-            case block_type_heading:
+            case BLOCK_TYPE_HEADING:
                 pass
-            case block_type_code:
+            case BLOCK_TYPE_CODE:
                 pass
-            case block_type_quote:
+            case BLOCK_TYPE_QUOTE:
                 pass
-            case block_type_unordered_list:
+            case BLOCK_TYPE_UNORDERED_LIST:
                 pass
-            case block_type_ordered_list:
+            case BLOCK_TYPE_ORDERED_LIST:
                 pass
-            case block_type_paragraphblock_type_:
+            case BLOCK_TYPE_PARAGRAPH:
                 pass
             case _:
                 pass
