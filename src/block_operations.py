@@ -1,3 +1,11 @@
+block_type_heading = "heading"
+block_type_code = "code"
+block_type_quote = "quote"
+block_type_unordered_list = "unordered_list"
+block_type_ordered_list = "ordered_list"
+block_type_paragraph = "paragraph"
+
+
 def markdown_to_blocks(markdown):
     if not markdown:
         return []
@@ -14,17 +22,17 @@ def block_to_block_type(block):
     if not block:
         return ""
     if is_heading(block):
-        return "heading"
+        return block_type_heading
     if is_code(block):
-        return "code"
+        return block_type_code
     lines = block.splitlines()
     if is_quote(lines):
-        return "quote"
+        return block_type_quote
     if is_unordered_list(lines):
-        return "unordered_list"
+        return block_type_unordered_list
     if is_ordered_list(lines):
-        return "ordered_list"
-    return "paragraph"
+        return block_type_ordered_list
+    return block_type_paragraph
 
 
 def is_heading(block):
@@ -59,4 +67,18 @@ def markdown_to_html_node(markdown):
     blocks = markdown_to_blocks(markdown)
     for block in blocks:
         block_type = block_to_block_type(block)
-        pass
+        match block_type:
+            case block_type_heading:
+                pass
+            case block_type_code:
+                pass
+            case block_type_quote:
+                pass
+            case block_type_unordered_list:
+                pass
+            case block_type_ordered_list:
+                pass
+            case block_type_paragraphblock_type_:
+                pass
+            case _:
+                pass
