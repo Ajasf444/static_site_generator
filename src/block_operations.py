@@ -1,3 +1,9 @@
+from textnode import (
+    text_node_to_html_node,
+    text_to_textnodes,
+)
+from parentnode import ParentNode
+
 BLOCK_TYPE_HEADING = "heading"
 BLOCK_TYPE_CODE = "code"
 BLOCK_TYPE_QUOTE = "quote"
@@ -82,3 +88,33 @@ def markdown_to_html_node(markdown):
                 pass
             case _:
                 pass
+
+
+# TODO: will create appropriate ParentNode with children from text_to_children()
+def process_heading_block(block):
+    pass
+
+
+def process_code_block(block):
+    pass
+
+
+def process_quote_block(block):
+    pass
+
+
+def process_unordered_list_block(block):
+    pass
+
+
+def process_ordered_list_block(block):
+    pass
+
+
+def process_paragraph_block(block):
+    pass
+
+
+def text_to_children(text):
+    # TODO: likely will include text_node_to_html_node() and text_to_textnodes()
+    pass
