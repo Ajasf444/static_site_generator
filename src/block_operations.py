@@ -90,7 +90,7 @@ def markdown_to_html_node(markdown):
                 pass
 
 
-# TODO: will create appropriate ParentNode with children from text_to_children()
+# TODO: will create appropriate ParentNode with children from text_to_children() also will call to_html()
 def process_heading_block(block):
     pass
 
