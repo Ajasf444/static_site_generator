@@ -72,22 +72,26 @@ def is_ordered_list(lines):
 def markdown_to_html_node(markdown):
     blocks = markdown_to_blocks(markdown)
     for block in blocks:
-        block_type = block_to_block_type(block)
-        match block_type:
-            case BLOCK_TYPE_HEADING:
-                pass
-            case BLOCK_TYPE_CODE:
-                pass
-            case BLOCK_TYPE_QUOTE:
-                pass
-            case BLOCK_TYPE_UNORDERED_LIST:
-                pass
-            case BLOCK_TYPE_ORDERED_LIST:
-                pass
-            case BLOCK_TYPE_PARAGRAPH:
-                pass
-            case _:
-                pass
+        pass
+
+
+def block_to_html_node(block):
+    block_type = block_to_block_type(block)
+    match block_type:
+        case BLOCK_TYPE_HEADING:
+            pass
+        case BLOCK_TYPE_CODE:
+            pass
+        case BLOCK_TYPE_QUOTE:
+            pass
+        case BLOCK_TYPE_UNORDERED_LIST:
+            pass
+        case BLOCK_TYPE_ORDERED_LIST:
+            pass
+        case BLOCK_TYPE_PARAGRAPH:
+            pass
+        case _:
+            pass
 
 
 # TODO: will create appropriate ParentNode with children from text_to_children() also will call to_html()
@@ -116,5 +120,5 @@ def process_paragraph_block(block):
 
 
 def text_to_children(text):
-    # TODO: likely will include text_node_to_html_node() and text_to_textnodes()
-    pass
+    text_nodes = text_to_textnodes(text)
+    return [text_node_to_html_node(text_node) for text_node in text_nodes]
