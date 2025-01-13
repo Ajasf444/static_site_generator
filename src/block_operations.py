@@ -71,8 +71,11 @@ def is_ordered_list(lines):
 
 def markdown_to_html_node(markdown):
     blocks = markdown_to_blocks(markdown)
+    children = []
     for block in blocks:
-        pass
+        html_node = block_to_html_node(block)
+        children.append(html_node)
+    return ParentNode("div", children)
 
 
 def block_to_html_node(block):
