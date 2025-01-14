@@ -82,7 +82,7 @@ def block_to_html_node(block):
     block_type = block_to_block_type(block)
     match block_type:
         case BLOCK_TYPE_HEADING:
-            pass
+            return heading_to_html_node(block)
         case BLOCK_TYPE_CODE:
             pass
         case BLOCK_TYPE_QUOTE:
@@ -98,27 +98,34 @@ def block_to_html_node(block):
 
 
 # TODO: will create appropriate ParentNode with children from text_to_children() also will call to_html()
-def process_heading_block(block):
+def heading_to_html_node(block):
+    count = 0
+    for char in block:
+        if char == "#":
+            count += 1
+        else:
+            break
+    children = text_to_children(block[count + 1 :])
+    return ParentNode(f"h{count}", children)
+
+
+def code_to_html_node(block):
     pass
 
 
-def process_code_block(block):
+def quote_to_html_node(block):
     pass
 
 
-def process_quote_block(block):
+def unordered_list_to_html_node(block):
     pass
 
 
-def process_unordered_list_block(block):
+def ordered_list_to_html_node(block):
     pass
 
 
-def process_ordered_list_block(block):
-    pass
-
-
-def process_paragraph_block(block):
+def paragraph_to_html_node(block):
     pass
 
 
