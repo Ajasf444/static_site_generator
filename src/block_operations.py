@@ -110,7 +110,10 @@ def heading_to_html_node(block):
 
 
 def code_to_html_node(block):
-    pass
+    text = block[4:-3]
+    children = text_to_children(text)
+    code_tag_html_node = ParentNode("code", children)
+    return ParentNode("pre", [code_tag_html_node])
 
 
 def quote_to_html_node(block):
