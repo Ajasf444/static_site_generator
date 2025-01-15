@@ -117,7 +117,8 @@ def code_to_html_node(block):
 
 
 def quote_to_html_node(block):
-    pass
+    children = text_to_children(block)
+    return ParentNode("blockquote", children)
 
 
 def unordered_list_to_html_node(block):
