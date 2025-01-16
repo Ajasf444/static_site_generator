@@ -117,12 +117,13 @@ def code_to_html_node(block):
 
 
 def quote_to_html_node(block):
-    children = text_to_children(block)
+    lines = [line[2:] for line in block.splitlines()]
+    children = text_to_children(" ".join(lines))
     return ParentNode("blockquote", children)
 
 
 def unordered_list_to_html_node(block):
-    pass
+    lines = 
 
 
 def ordered_list_to_html_node(block):
