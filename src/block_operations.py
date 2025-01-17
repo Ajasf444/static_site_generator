@@ -137,7 +137,8 @@ def ordered_list_to_html_node(block):
 
 
 def paragraph_to_html_node(block):
-    pass
+    children = text_to_children(block)
+    return ParentNode("p", children)
 
 
 def text_to_children(text):
