@@ -123,11 +123,17 @@ def quote_to_html_node(block):
 
 
 def unordered_list_to_html_node(block):
-    lines = 
+    children = [
+        ParentNode("li", text_to_children(line[2:])) for line in block.splitlines()
+    ]
+    return ParentNode("ul", children)
 
 
 def ordered_list_to_html_node(block):
-    pass
+    children = [
+        ParentNode("li", text_to_children(line[3:])) for line in block.splitlines()
+    ]
+    return ParentNode("ol", children)
 
 
 def paragraph_to_html_node(block):
