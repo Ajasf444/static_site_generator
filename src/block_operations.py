@@ -86,7 +86,7 @@ def block_to_html_node(block):
         case BLOCK_TYPE_CODE:
             return code_to_html_node(block)
         case BLOCK_TYPE_QUOTE:
-            pass
+            return quote_to_html_node(block)
         case BLOCK_TYPE_UNORDERED_LIST:
             pass
         case BLOCK_TYPE_ORDERED_LIST:
