@@ -88,13 +88,13 @@ def block_to_html_node(block):
         case BLOCK_TYPE_QUOTE:
             return quote_to_html_node(block)
         case BLOCK_TYPE_UNORDERED_LIST:
-            pass
+            return unordered_list_to_html_node(block)
         case BLOCK_TYPE_ORDERED_LIST:
-            pass
+            return ordered_list_to_html_node(block)
         case BLOCK_TYPE_PARAGRAPH:
-            pass
+            return paragraph_to_html_node(block)
         case _:
-            pass
+            raise Exception("Invalid block type")
 
 
 # TODO: will create appropriate ParentNode with children from text_to_children() also will call to_html()
