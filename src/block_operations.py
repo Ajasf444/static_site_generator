@@ -94,10 +94,9 @@ def block_to_html_node(block):
         case BLOCK_TYPE_PARAGRAPH:
             return paragraph_to_html_node(block)
         case _:
-            raise Exception("Invalid block type")
+            raise ValueError("Invalid block type")
 
 
-# TODO: will create appropriate ParentNode with children from text_to_children() also will call to_html()
 def heading_to_html_node(block):
     count = 0
     for char in block:
@@ -137,7 +136,9 @@ def ordered_list_to_html_node(block):
 
 
 def paragraph_to_html_node(block):
-    children = text_to_children(block)
+    lines = block.splitlines()
+    paragraph = " ".join(lines)
+    children = text_to_children(paragraph)
     return ParentNode("p", children)
 
 
