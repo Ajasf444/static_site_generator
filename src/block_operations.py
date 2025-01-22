@@ -1,3 +1,4 @@
+from enum import Enum
 from textnode import (
     text_node_to_html_node,
     text_to_textnodes,
@@ -5,7 +6,7 @@ from textnode import (
 from parentnode import ParentNode
 
 
-class BlockType:
+class BlockType(Enum):
     HEADING = "heading"
     CODE = "code"
     QUOTE = "quote"
