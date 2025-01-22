@@ -4,12 +4,14 @@ from textnode import (
 )
 from parentnode import ParentNode
 
-BLOCK_TYPE_HEADING = "heading"
-BLOCK_TYPE_CODE = "code"
-BLOCK_TYPE_QUOTE = "quote"
-BLOCK_TYPE_UNORDERED_LIST = "unordered_list"
-BLOCK_TYPE_ORDERED_LIST = "ordered_list"
-BLOCK_TYPE_PARAGRAPH = "paragraph"
+
+class BlockType:
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
+    PARAGRAPH = "paragraph"
 
 
 def markdown_to_blocks(markdown):
@@ -28,17 +30,17 @@ def block_to_block_type(block):
     if not block:
         return ""
     if is_heading(block):
-        return BLOCK_TYPE_HEADING
+        return BlockType.HEADING
     if is_code(block):
-        return BLOCK_TYPE_CODE
+        return BlockType.CODE
     lines = block.splitlines()
     if is_quote(lines):
-        return BLOCK_TYPE_QUOTE
+        return BlockType.QUOTE
     if is_unordered_list(lines):
-        return BLOCK_TYPE_UNORDERED_LIST
+        return BlockType.UNORDERED_LIST
     if is_ordered_list(lines):
-        return BLOCK_TYPE_ORDERED_LIST
-    return BLOCK_TYPE_PARAGRAPH
+        return BlockType.ORDERED_LIST
+    return BlockType.PARAGRAPH
 
 
 def is_heading(block):
@@ -81,17 +83,17 @@ def markdown_to_html_node(markdown):
 def block_to_html_node(block):
     block_type = block_to_block_type(block)
     match block_type:
-        case BLOCK_TYPE_HEADING:
+        case BlockType.HEADING:
             return heading_to_html_node(block)
-        case BLOCK_TYPE_CODE:
+        case BlockType.CODE:
             return code_to_html_node(block)
-        case BLOCK_TYPE_QUOTE:
+        case BlockType.QUOTE:
             return quote_to_html_node(block)
-        case BLOCK_TYPE_UNORDERED_LIST:
+        case BlockType.UNORDERED_LIST:
             return unordered_list_to_html_node(block)
-        case BLOCK_TYPE_ORDERED_LIST:
+        case BlockType.ORDERED_LIST:
             return ordered_list_to_html_node(block)
-        case BLOCK_TYPE_PARAGRAPH:
+        case BlockType.PARAGRAPH:
             return paragraph_to_html_node(block)
         case _:
             raise ValueError("Invalid block type")
