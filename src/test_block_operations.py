@@ -7,7 +7,8 @@ from block_operations import (
 
 
 class TestMarkdownToHTMLNode(unittest.TestCase):
-    pass
+    def test_single_paragraph(self):
+        pass
 
 
 class TestMarkdownToBlocks(unittest.TestCase):
