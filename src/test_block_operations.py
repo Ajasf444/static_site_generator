@@ -3,17 +3,20 @@ import unittest
 from block_operations import (
     block_to_block_type,
     markdown_to_blocks,
-    markdown_to_html_node,
 )
 
 
+class TestMarkdownToHTMLNode(unittest.TestCase):
+    pass
+
+
 class TestMarkdownToBlocks(unittest.TestCase):
-    def empty_markdown(self):
+    def test_empty_markdown(self):
         markdown = ""
         output = []
         self.assertEqual(markdown_to_blocks(markdown), output)
 
-    def extraneous_newlines(self):
+    def test_extraneous_newlines(self):
         markdown = """# This is a heading
 
 
@@ -32,13 +35,13 @@ This is a paragraph of text. It has some **bold** and *italic* words inside of i
 """
 
         output = [
-            "#This is a heading",
+            "# This is a heading",
             "This is a paragraph of text. It has some **bold** and *italic* words inside of it.",
-            "*This is the first list item in a list block\n* This is a list item\n* This is another list item",
+            "* This is the first list item in a list block\n* This is a list item\n* This is another list item",
         ]
         self.assertEqual(markdown_to_blocks(markdown), output)
 
-    def multiple_blocks(self):
+    def test_multiple_blocks(self):
         markdown = """# This is a heading
 
 This is a paragraph of text. It has some **bold** and *italic* words inside of it.
@@ -47,9 +50,9 @@ This is a paragraph of text. It has some **bold** and *italic* words inside of i
 * This is a list item
 * This is another list item"""
         output = [
-            "#This is a heading",
+            "# This is a heading",
             "This is a paragraph of text. It has some **bold** and *italic* words inside of it.",
-            "*This is the first list item in a list block\n* This is a list item\n* This is another list item",
+            "* This is the first list item in a list block\n* This is a list item\n* This is another list item",
         ]
         self.assertEqual(markdown_to_blocks(markdown), output)
 
