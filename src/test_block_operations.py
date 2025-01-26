@@ -3,12 +3,29 @@ import unittest
 from block_operations import (
     block_to_block_type,
     markdown_to_blocks,
+    markdown_to_html_node,
 )
+from parentnode import ParentNode
 
 
 class TestMarkdownToHTMLNode(unittest.TestCase):
-    def test_single_paragraph(self):
-        pass
+    def test_multiple_blocks(self):
+        markdown = """# This is a heading
+
+This is a paragraph of text. It has some **bold** and *italic* words inside of it.
+
+* This is the first list item in a list block
+* This is a list item
+* This is another list item"""
+        # TODO: put the appropriate childen nodes
+        children = [
+            "# This is a heading",
+            "This is a paragraph of text. It has some **bold** and *italic* words inside of it.",
+            "* This is the first list item in a list block\n* This is a list item\n* This is another list item",
+        ]
+        output = ParentNode("div", children)
+
+        self.assertEqual(markdown_to_html_node(markdown), output)
 
 
 class TestMarkdownToBlocks(unittest.TestCase):
