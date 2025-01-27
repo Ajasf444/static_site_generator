@@ -5,19 +5,8 @@ from block_operations import (
     block_to_block_type,
     markdown_to_blocks,
     markdown_to_html_node,
-    heading_to_html_node,
 )
-from leafnode import LeafNode
 from parentnode import ParentNode
-
-
-class TestHeadingToHTMLNode(unittest.TestCase):
-    def test_single_heading(self):
-        heading = "# This is a heading"
-        # TODO: write expected output for calling heading_to_html_node()
-        children = [LeafNode(None, "This is a heading")]
-        output = ParentNode("h1", children)
-        self.assertEqual(heading_to_html_node(heading), output)
 
 
 class TestMarkdownToHTMLNode(unittest.TestCase):
@@ -29,15 +18,32 @@ This is a paragraph of text. It has some **bold** and *italic* words inside of i
 * This is the first list item in a list block
 * This is a list item
 * This is another list item"""
-        # TODO: put the appropriate child nodes
-        children = [
-            "# This is a heading",
-            "This is a paragraph of text. It has some **bold** and *italic* words inside of it.",
-            "* This is the first list item in a list block\n* This is a list item\n* This is another list item",
-        ]
-        output = ParentNode("div", children)
+        html = markdown_to_html_node(markdown).to_html()
+        output = "<div><h1>This is a heading</h1><p>This is a paragraph of text. It has some <b>bold</b> and <i>italic</i> words inside of it.</p><ul><li>This is the first list item in a list block</li><li>This is a list item</li><li>This is another list item</li></ul></div>"
 
-        self.assertEqual(markdown_to_html_node(markdown), output)
+        self.assertEqual(html, output)
+
+    def test_multiple_blocks_with_extraneous_newlines(self):
+        markdown = """# This is a heading
+
+
+
+
+This is a paragraph of text. It has some **bold** and *italic* words inside of it.
+
+
+
+
+* This is the first list item in a list block
+* This is a list item
+* This is another list item
+
+
+"""
+        html = markdown_to_html_node(markdown).to_html()
+        output = "<div><h1>This is a heading</h1><p>This is a paragraph of text. It has some <b>bold</b> and <i>italic</i> words inside of it.</p><ul><li>This is the first list item in a list block</li><li>This is a list item</li><li>This is another list item</li></ul></div>"
+
+        self.assertEqual(html, output)
 
 
 class TestMarkdownToBlocks(unittest.TestCase):
