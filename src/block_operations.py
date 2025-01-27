@@ -7,6 +7,7 @@ from parentnode import ParentNode
 
 
 class BlockType(Enum):
+    NONE = ""
     HEADING = "heading"
     CODE = "code"
     QUOTE = "quote"
@@ -29,7 +30,7 @@ def markdown_to_blocks(markdown):
 
 def block_to_block_type(block):
     if not block:
-        return ""
+        return BlockType.NONE
     if is_heading(block):
         return BlockType.HEADING
     if is_code(block):
