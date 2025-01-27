@@ -4,8 +4,17 @@ from block_operations import (
     block_to_block_type,
     markdown_to_blocks,
     markdown_to_html_node,
+    heading_to_html_node,
 )
 from parentnode import ParentNode
+
+
+class TestHeadingToHTMLNode(unittest.TestCase):
+    def test_single_heading(self):
+        heading = "# This is a heading"
+        #TODO: write expected output for calling heading_to_html_node()
+        output = 
+        
 
 
 class TestMarkdownToHTMLNode(unittest.TestCase):
