@@ -1,9 +1,9 @@
-from textnode import TextNode, TextType
+import os
+import shutil
 
 
 def main():
-    text_node = TextNode("This is a text node", TextType.BOLD, "https://www.boot.dev")
-    print(text_node)
+    pass
 
 
 if __name__ == "__main__":
