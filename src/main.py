@@ -3,8 +3,8 @@ import shutil
 
 
 def main():
-    root = "Baconator"
-    dest = "Fries"
+    root = "../static/"
+    dest = "../public/"
     r_copy(root, dest, True)
 
 
