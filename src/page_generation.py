@@ -4,3 +4,7 @@ def extract_title(markdown):
         if line.startswith("# "):
             return line[2:]
     raise Exception("No header found")
+
+
+def generate_page(from_path, template_path, dest_path):
+    pass
