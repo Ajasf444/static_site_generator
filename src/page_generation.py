@@ -1,3 +1,6 @@
+from block_operations import markdown_to_html_node
+
+
 def extract_title(markdown):
     lines = markdown.splitlines()
     for line in lines:
@@ -12,3 +15,4 @@ def generate_page(from_path, template_path, dest_path):
         content = file.read()
     with open(template_path, "r") as file:
         template = file.read()
+    html = markdown_to_html_node(content).to_html()
