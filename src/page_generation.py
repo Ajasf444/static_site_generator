@@ -15,5 +15,9 @@ def generate_page(from_path, template_path, dest_path):
         markdown = file.read()
     with open(template_path, "r") as file:
         template = file.read()
-    html = markdown_to_html_node(markdown).to_html()
+    content = markdown_to_html_node(markdown).to_html()
     title = extract_title(markdown)
+    html = template.replace("{{ Title }}", title).replace("{{ Content }}", content)
+    # TODO: create necessary directories
+    with open(dest_path, "w") as file:
+        file.write(html)
