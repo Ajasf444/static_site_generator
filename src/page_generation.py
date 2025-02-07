@@ -1,4 +1,5 @@
 from block_operations import markdown_to_html_node
+import os
 
 
 def extract_title(markdown):
@@ -18,6 +19,7 @@ def generate_page(from_path, template_path, dest_path):
     content = markdown_to_html_node(markdown).to_html()
     title = extract_title(markdown)
     html = template.replace("{{ Title }}", title).replace("{{ Content }}", content)
-    # TODO: create necessary directories
+    if not os.path.exists(dest_path):
+        os.makedirs(dest_path, exist_ok=True)
     with open(dest_path, "w") as file:
         file.write(html)
