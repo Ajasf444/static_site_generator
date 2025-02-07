@@ -5,6 +5,7 @@ import shutil
 def main():
     root = "static/"
     dest = "public/"
+    # TODO: delete contents of public/
     r_copy(root, dest, True)
 
 
