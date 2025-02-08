@@ -10,7 +10,11 @@ def main():
 
 def recursive_copy(root, dest, first_pass=False):
     if first_pass:
-        recursive_rm(dest)
+        if not os.path.exists(dest):
+            print(f"Making directory: {dest}")
+            os.mkdir(dest)
+        else:
+            recursive_rm(dest)
     for item in os.listdir(root):
         src_path = os.path.join(root, item)
         if os.path.isfile(src_path):
@@ -24,17 +28,13 @@ def recursive_copy(root, dest, first_pass=False):
 
 
 def recursive_rm(dest):
-    if not os.path.exists(dest):
-        print(f"Making directory: {dest}")
-        os.mkdir(dest)
-    else:
-        print(f"Removing contents of: {dest}")
-        for item in os.listdir(dest):
-            path = os.path.join(dest, item)
-            if os.path.isfile(path):
-                os.remove(path)
-            else:
-                shutil.rmtree(path)
+    print(f"Removing contents of: {dest}")
+    for item in os.listdir(dest):
+        path = os.path.join(dest, item)
+        if os.path.isfile(path):
+            os.remove(path)
+        else:
+            shutil.rmtree(path)
 
 
 if __name__ == "__main__":
