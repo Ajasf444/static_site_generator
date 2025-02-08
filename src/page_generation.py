@@ -21,5 +21,7 @@ def generate_page(from_path, template_path, dest_path):
     html = template.replace("{{ Title }}", title).replace("{{ Content }}", content)
     if not os.path.exists(dest_path):
         os.makedirs(dest_path, exist_ok=True)
-    with open(dest_path, "w") as file:
+    file_name = "index.html"
+    file_path = os.path.join(dest_path, file_name)
+    with open(file_path, "w") as file:
         file.write(html)
