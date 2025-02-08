@@ -5,10 +5,10 @@ import shutil
 def main():
     root = "static/"
     dest = "public/"
-    recursive_copy(root, dest, True)
+    recursive_copy(root, dest)
 
 
-def recursive_copy(root, dest, first_pass=False):
+def recursive_copy(root, dest, first_pass=True):
     if first_pass:
         if not os.path.exists(dest):
             print(f"Making directory: {dest}")
@@ -24,7 +24,7 @@ def recursive_copy(root, dest, first_pass=False):
             dest_path = os.path.join(dest, item)
             print(f"Making directory: {dest_path}")
             os.mkdir(dest_path)
-            recursive_copy(src_path, dest_path)
+            recursive_copy(src_path, dest_path, False)
 
 
 def recursive_rm(dest):
