@@ -1,11 +1,14 @@
 import os
 import shutil
+from page_generation import generate_page
 
 
 def main():
     root = "static/"
     dest = "public/"
+    template_path = "./template.html"
     recursive_copy(root, dest)
+    generate_page()
 
 
 def recursive_copy(root, dest, first_pass=True):
