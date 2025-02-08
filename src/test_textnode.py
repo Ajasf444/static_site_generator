@@ -56,9 +56,9 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
         self.assertEqual(leaf_node, LeafNode("code", "code"))
 
     def test_link_type(self):
-        text_node = TextNode("link", TextType.LINK)
+        text_node = TextNode("link", TextType.LINK, "Tahm Kench")
         leaf_node = text_node_to_html_node(text_node)
-        self.assertEqual(leaf_node, LeafNode("a", "link"))
+        self.assertEqual(leaf_node, LeafNode("a", "link", {"href": "Tahm Kench"}))
 
     def test_image_type(self):
         text_node = TextNode("alt text", TextType.IMAGE, "https://dummy.jpg")
