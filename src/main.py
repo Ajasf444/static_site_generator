@@ -5,10 +5,12 @@ from page_generation import generate_page
 
 def main():
     root = "static/"
+    source_path = os.path.join(root, "index.md")
     dest = "public/"
+    destination_path = os.path.join(dest, "index.html")
     template_path = "./template.html"
     recursive_copy(root, dest)
-    generate_page()
+    generate_page(source_path, template_path, destination_path)
 
 
 def recursive_copy(root, dest, first_pass=True):
