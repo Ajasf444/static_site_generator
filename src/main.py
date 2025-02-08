@@ -4,12 +4,12 @@ from page_generation import generate_page
 
 
 def main():
-    root = "static/"
-    source_path = os.path.join(root, "index.md")
-    dest = "public/"
-    destination_path = os.path.join(dest, "index.html")
-    template_path = "./template.html"
-    recursive_copy(root, dest)
+    source_directory = "content/"
+    source_path = os.path.join(source_directory, "index.md")
+    destination_path = "public/"
+    template_path = "template.html"
+    static_directory = "static/"
+    recursive_copy(static_directory, destination_path)
     generate_page(source_path, template_path, destination_path)
 
 
