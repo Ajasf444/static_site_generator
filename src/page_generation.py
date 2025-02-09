@@ -25,3 +25,7 @@ def generate_page(from_path, template_path, dest_path):
     file_path = os.path.join(dest_path, file_name)
     with open(file_path, "w") as file:
         file.write(html)
+
+
+def generate_pages_recursive(from_path, template_path, dest_path):
+    pass
