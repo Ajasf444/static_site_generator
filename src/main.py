@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from page_generation import generate_page
+from page_generation import generate_page, generate_pages_recursive
 
 
 def main():
