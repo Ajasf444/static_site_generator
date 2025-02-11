@@ -27,5 +27,6 @@ def generate_page(from_path, template_path, dest_path):
         file.write(html)
 
 
-def generate_pages_recursive(from_path, template_path, dest_path):
-    pass
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    for dir in os.listdir(dir_path_content):
+        pass
