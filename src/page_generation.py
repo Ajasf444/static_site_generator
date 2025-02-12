@@ -29,4 +29,15 @@ def generate_page(from_path, template_path, dest_path):
 
 def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
     for dir in os.listdir(dir_path_content):
-        pass
+        if os.path.isfile(dir):
+            if is_markdown_file(dir):
+                # TODO: convert to html
+                generate_page(dir_path_content, template_path, dest_dir_path)
+
+        else:
+            # TODO: further recurse
+            pass
+
+
+def is_markdown_file(file: str):
+    return file.endswith(".md")
