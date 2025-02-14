@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from page_generation import generate_page, generate_pages_recursive
+from page_generation import generate_pages_recursive
 
 
 def main():
@@ -11,7 +11,7 @@ def main():
     template_path = "template.html"
     static_directory = "static/"
     recursive_copy(static_directory, destination_path)
-    generate_page(source_path, template_path, destination_path)
+    generate_pages_recursive(source_path, template_path, destination_path)
 
 
 def recursive_copy(root, dest, first_pass=True):
